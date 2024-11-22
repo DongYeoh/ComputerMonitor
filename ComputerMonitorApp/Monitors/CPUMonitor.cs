@@ -6,37 +6,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerMonitorApp.Monitors;
-internal class CPUMonitor : Monitor
+namespace ComputerMonitorApp.Monitors
 {
-    private PerformanceCounter cpuCounter;
-    private System.Timers.Timer timer;
-    public CPUMonitor() : base(EMonitorType.CPU)
+    internal class CPUMonitor : Monitor
     {
-        cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-        timer = new System.Timers.Timer(1000);
-        timer.Elapsed += Timer_Elapsed;
-        timer.Start();
-    }
-    private void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
-    {
-        var usage = cpuCounter.NextValue();
-        OnMonitorChanged(new CPUMonitorEventArgs(usage));
-    }
-    public override void Dispose()
-    {
-        if (timer != null)
+        private PerformanceCounter cpuCounter;
+        private System.Timers.Timer timer;
+        public CPUMonitor() : base(EMonitorType.CPU)
         {
-            timer.Stop();
-            timer.Dispose();
+            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            timer = new System.Timers.Timer(1000);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
+        }
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            var usage = cpuCounter.NextValue();
+            OnMonitorChanged(new CPUMonitorEventArgs(usage));
+        }
+        public override void Dispose()
+        {
+            base.Dispose();
+            if (timer != null)
+            {
+                timer.Stop();
+                timer.Dispose();
+            }
         }
     }
-}
-internal class CPUMonitorEventArgs : MonitorEventArgs
-{
-    public float Usage { get; private set; }
-    public CPUMonitorEventArgs(float usage)
+    internal class CPUMonitorEventArgs : MonitorEventArgs
     {
-        this.Usage = usage;
+        public float Load { get; private set; }
+        public CPUMonitorEventArgs(float load)
+        {
+            this.Load = load;
+        }
     }
 }

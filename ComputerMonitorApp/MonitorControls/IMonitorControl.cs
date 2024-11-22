@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerMonitorApp.MonitorControls;
-internal interface IMonitorControl
+namespace ComputerMonitorApp.MonitorControls
 {
-    
+    internal interface IMonitorControl
+    {
+
+    }
 }

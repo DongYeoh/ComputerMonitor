@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerMonitorApp;
-public enum EMonitorType
+namespace ComputerMonitorApp
 {
-    CPU,
-    RAM,
-    GPU,
-    NETWORK,
-    HARDDRVIE
+    public enum EMonitorType
+    {
+        CPU,
+        RAM,
+        GPU,
+        Network,
+        HardDisk
+    }
 }

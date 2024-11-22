@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerMonitorApp.Monitors;
-internal interface IMonitor
+namespace ComputerMonitorApp.Monitors
 {
+    internal interface IMonitor
+    {
+    }
 }

@@ -9,23 +9,53 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComputerMonitorApp.MonitorControls;
-public partial class MonitorControl : UserControl
+namespace ComputerMonitorApp.MonitorControls
 {
-    public Monitors.Monitor? Monitor { get; protected set; }
-    public MonitorControl()
+    public partial class MonitorControl : UserControl, IMonitorControl 
     {
-        InitializeComponent();
-    }
-    protected void SafeInvoke(Action action)
-    {
-        if (this.InvokeRequired)
+        public EMonitorType MonitorType { get; set; }
+        public Monitors.Monitor Monitor { get; private set; }
+        public MonitorControl()
         {
-            this.Invoke(action);
+            InitializeComponent();
         }
-        else
+        public void BindMonitor(Monitors.Monitor monitor)
         {
-            action();
+            if (this.Monitor != null)
+            {
+                this.Monitor.MonitorChanged -= Monitor_MonitorChanged;
+            }
+            this.Monitor = monitor;
+            this.Monitor.MonitorChanged += Monitor_MonitorChanged;
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+        }
+        
+        private void Monitor_MonitorChanged(Monitors.Monitor sender, MonitorEventArgs e)
+        {
+            OnMonitorChanged(e);
+        }
+        protected virtual void OnMonitorChanged(MonitorEventArgs e)
+        {
+
+        }
+        public virtual void ApplyTheme(MonitorControlTheme theme)
+        {
+            this.BackColor = theme.BackgroundColor;
+
+        }
+        protected void SafeInvoke(Action action)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
         }
     }
 }

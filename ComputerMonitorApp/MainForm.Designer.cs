@@ -1,4 +1,6 @@
-﻿namespace ComputerMonitorApp
+﻿using System.Windows.Forms;
+using System.Drawing;
+namespace ComputerMonitorApp
 {
     partial class MainForm
     {
@@ -29,41 +31,44 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            mainLayout = new TableLayoutPanel();
-            SuspendLayout();
+            this.mainLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.SuspendLayout();
             // 
             // mainLayout
             // 
-            mainLayout.AutoScroll = true;
-            mainLayout.AutoSize = true;
-            mainLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            mainLayout.ColumnCount = 1;
-            mainLayout.ColumnStyles.Add(new ColumnStyle());
-            mainLayout.Location = new Point(0, 0);
-            mainLayout.Margin = new Padding(0);
-            mainLayout.Name = "mainLayout";
-            mainLayout.RowCount = 1;
-            mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            mainLayout.Size = new Size(0, 0);
-            mainLayout.TabIndex = 0;
+            this.mainLayout.AutoScroll = true;
+            this.mainLayout.AutoSize = true;
+            this.mainLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.mainLayout.BackColor = System.Drawing.Color.Blue;
+            this.mainLayout.ColumnCount = 1;
+            this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.mainLayout.Location = new System.Drawing.Point(0, 0);
+            this.mainLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.mainLayout.Name = "mainLayout";
+            this.mainLayout.RowCount = 1;
+            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.mainLayout.Size = new System.Drawing.Size(20, 0);
+            this.mainLayout.TabIndex = 0;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.IndianRed;
-            ClientSize = new Size(182, 41);
-            Controls.Add(mainLayout);
-            FormBorderStyle = FormBorderStyle.None;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "MainForm";
-            ShowIcon = false;
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.Manual;
-            Text = "Form1";
-            TopMost = true;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gray;
+            this.ClientSize = new System.Drawing.Size(141, 26);
+            this.Controls.Add(this.mainLayout);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "MainForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "Form1";
+            this.TopMost = true;
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

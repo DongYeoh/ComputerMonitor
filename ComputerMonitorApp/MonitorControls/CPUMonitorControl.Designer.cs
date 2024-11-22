@@ -1,107 +1,111 @@
-﻿namespace ComputerMonitorApp.MonitorControls;
-
-partial class CPUMonitorControl
+﻿using System.Windows.Forms;
+using System.Drawing;
+namespace ComputerMonitorApp.MonitorControls
 {
-    /// <summary> 
-    /// 必需的设计器变量。
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
 
-    /// <summary> 
-    /// 清理所有正在使用的资源。
-    /// </summary>
-    /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-    protected override void Dispose(bool disposing)
+    partial class CPUMonitorControl
     {
-        if (disposing && (components != null))
+        /// <summary> 
+        /// 必需的设计器变量。
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// 清理所有正在使用的资源。
+        /// </summary>
+        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        protected override void Dispose(bool disposing)
         {
-            components.Dispose();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
         }
-        base.Dispose(disposing);
+
+        #region 组件设计器生成的代码
+
+        /// <summary> 
+        /// 设计器支持所需的方法 - 不要修改
+        /// 使用代码编辑器修改此方法的内容。
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.chartControl = new ComputerMonitorApp.ChartControl();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.labelLoad = new ComputerMonitorApp.UI.ValueLabel();
+            this.nameLabel1 = new ComputerMonitorApp.UI.NameLabel();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // chartControl
+            // 
+            this.chartControl.BackColor = System.Drawing.Color.DarkGray;
+            this.chartControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartControl.Location = new System.Drawing.Point(86, 0);
+            this.chartControl.Margin = new System.Windows.Forms.Padding(0);
+            this.chartControl.Name = "chartControl";
+            this.chartControl.Size = new System.Drawing.Size(107, 25);
+            this.chartControl.TabIndex = 3;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.chartControl, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.labelLoad, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.nameLabel1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(193, 25);
+            this.tableLayoutPanel1.TabIndex = 4;
+            // 
+            // labelLoad
+            // 
+            this.labelLoad.AutoSize = true;
+            this.labelLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelLoad.Location = new System.Drawing.Point(46, 0);
+            this.labelLoad.Name = "labelLoad";
+            this.labelLoad.Size = new System.Drawing.Size(37, 25);
+            this.labelLoad.TabIndex = 4;
+            this.labelLoad.Text = "-";
+            this.labelLoad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // nameLabel1
+            // 
+            this.nameLabel1.AutoSize = true;
+            this.nameLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nameLabel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.nameLabel1.Location = new System.Drawing.Point(3, 0);
+            this.nameLabel1.Name = "nameLabel1";
+            this.nameLabel1.Size = new System.Drawing.Size(37, 25);
+            this.nameLabel1.TabIndex = 5;
+            this.nameLabel1.Text = "CPU";
+            this.nameLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CPUMonitorControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Name = "CPUMonitorControl";
+            this.Size = new System.Drawing.Size(193, 25);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private ChartControl chartControl;
+        private TableLayoutPanel tableLayoutPanel1;
+        private UI.ValueLabel labelLoad;
+        private UI.NameLabel nameLabel1;
     }
-
-    #region 组件设计器生成的代码
-
-    /// <summary> 
-    /// 设计器支持所需的方法 - 不要修改
-    /// 使用代码编辑器修改此方法的内容。
-    /// </summary>
-    private void InitializeComponent()
-    {
-        label1 = new Label();
-        labelLoad = new Label();
-        chartControl = new ChartControl();
-        tableLayoutPanel1 = new TableLayoutPanel();
-        tableLayoutPanel1.SuspendLayout();
-        SuspendLayout();
-        // 
-        // label1
-        // 
-        label1.Anchor = AnchorStyles.None;
-        label1.AutoSize = true;
-        label1.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Bold);
-        label1.ForeColor = Color.Yellow;
-        label1.Location = new Point(8, 9);
-        label1.Name = "label1";
-        label1.Size = new Size(33, 17);
-        label1.TabIndex = 0;
-        label1.Text = "CPU";
-        // 
-        // labelLoad
-        // 
-        labelLoad.Anchor = AnchorStyles.None;
-        labelLoad.Location = new Point(53, 9);
-        labelLoad.Name = "labelLoad";
-        labelLoad.Size = new Size(44, 17);
-        labelLoad.TabIndex = 2;
-        // 
-        // chartControl
-        // 
-        chartControl.BackColor = Color.DarkGray;
-        chartControl.BufferLimit = 60;
-        chartControl.Dock = DockStyle.Fill;
-        chartControl.Location = new Point(100, 0);
-        chartControl.Margin = new Padding(0);
-        chartControl.Name = "chartControl";
-        chartControl.Size = new Size(125, 36);
-        chartControl.TabIndex = 3;
-        chartControl.YMaximum = 100D;
-        // 
-        // tableLayoutPanel1
-        // 
-        tableLayoutPanel1.ColumnCount = 3;
-        tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
-        tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
-        tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        tableLayoutPanel1.Controls.Add(chartControl, 2, 0);
-        tableLayoutPanel1.Controls.Add(labelLoad, 1, 0);
-        tableLayoutPanel1.Controls.Add(label1, 0, 0);
-        tableLayoutPanel1.Dock = DockStyle.Fill;
-        tableLayoutPanel1.Location = new Point(0, 0);
-        tableLayoutPanel1.Margin = new Padding(0);
-        tableLayoutPanel1.Name = "tableLayoutPanel1";
-        tableLayoutPanel1.RowCount = 1;
-        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        tableLayoutPanel1.Size = new Size(225, 36);
-        tableLayoutPanel1.TabIndex = 4;
-        // 
-        // CPUMonitorControl
-        // 
-        AutoScaleDimensions = new SizeF(7F, 17F);
-        AutoScaleMode = AutoScaleMode.Font;
-        Controls.Add(tableLayoutPanel1);
-        Margin = new Padding(0);
-        Name = "CPUMonitorControl";
-        Size = new Size(225, 36);
-        tableLayoutPanel1.ResumeLayout(false);
-        tableLayoutPanel1.PerformLayout();
-        ResumeLayout(false);
-    }
-
-    #endregion
-
-    private Label label1;
-    private Label labelLoad;
-    private ChartControl chartControl;
-    private TableLayoutPanel tableLayoutPanel1;
 }
