@@ -11,27 +11,15 @@ namespace ComputerMonitorApp.Monitors
     internal class CPUMonitor : Monitor
     {
         private PerformanceCounter cpuCounter;
-        private System.Timers.Timer timer;
         public CPUMonitor() : base(EMonitorType.CPU)
         {
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            timer = new System.Timers.Timer(1000);
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
+            EnableTimer(1000, Timer_Elapsed);
         }
-        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void Timer_Elapsed()
         {
             var usage = cpuCounter.NextValue();
             OnMonitorChanged(new CPUMonitorEventArgs(usage));
-        }
-        public override void Dispose()
-        {
-            base.Dispose();
-            if (timer != null)
-            {
-                timer.Stop();
-                timer.Dispose();
-            }
         }
     }
     internal class CPUMonitorEventArgs : MonitorEventArgs

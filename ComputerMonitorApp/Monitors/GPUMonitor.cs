@@ -11,7 +11,6 @@ namespace ComputerMonitorApp.Monitors
 {
     public class GPUMonitor : Monitors.Monitor
     {
-        private System.Timers.Timer timer;
         private IHardware gpu;
         private ISensor loadSensor;
         private ISensor temperatorSensor;
@@ -24,9 +23,7 @@ namespace ComputerMonitorApp.Monitors
                 this.gpu = gpu;
                 InitSensors();
                 //获取传感器
-                timer = new System.Timers.Timer(1000);
-                timer.Elapsed += Timer_Elapsed;
-                timer.Start();
+                EnableTimer(1000, Timer_Elapsed);
             }
         }
         private void InitSensors()
@@ -54,7 +51,7 @@ namespace ComputerMonitorApp.Monitors
 
             }
         }
-        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void Timer_Elapsed()
         {
             this.gpu?.Update();
             var eventArgs = new GPUMonitorEventArgs();
@@ -63,15 +60,6 @@ namespace ComputerMonitorApp.Monitors
             eventArgs.RamLoad = this.ramLoadSensor?.Value ?? 0;
             eventArgs.Fan = this.fanSensor?.Value ?? 0;
             OnMonitorChanged(eventArgs);
-        }
-        public override void Dispose()
-        {
-            base.Dispose();
-            if (timer != null)
-            {
-                timer.Stop();
-                timer.Dispose();
-            }
         }
     }
     internal class GPUMonitorEventArgs : MonitorEventArgs

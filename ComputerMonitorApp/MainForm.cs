@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Runtime;
+using Serilog;
 
 namespace ComputerMonitorApp
 {
@@ -162,8 +163,15 @@ namespace ComputerMonitorApp
             //异步关联Monitor，不用等待需要长时间初始化的Monitor
             Task.Factory.StartNew(() =>
             {
-                var monitor = MonitorFactory.GetMonitor(monitorType);
-                monitorControl.BindMonitor(monitor);
+                try
+                {
+                    var monitor = MonitorFactory.GetMonitor(monitorType);
+                    monitorControl.BindMonitor(monitor);
+                }
+                catch(Exception e)
+                {
+                    Log.Error("获取和绑定Monitor时失败："+e.Message,e);
+                }
             });
             return monitorControl;
         }

@@ -3,4 +3,9 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <RemoteDebugEnabled>true</RemoteDebugEnabled>
+    <RemoteDebugMachine>WIN-DLUN375NC1F:4026</RemoteDebugMachine>
+    <StartWorkingDirectory>D:\Projects\ComputerMonitor\ComputerMonitorApp\bin\Debug\</StartWorkingDirectory>
+  </PropertyGroup>
 </Project>
