@@ -35,11 +35,11 @@ namespace ComputerMonitorApp
         {
             base.OnLoad(e);
             if (this.IsInDesignMode()) return;
+            //初始化显示位置
+            InitLocation();
             //初始化事件监控
             InitEvents();
             InitHeadBar();
-            //初始化显示位置
-            InitLocation();
             //初始化监视器
             InitMonitorLayouts();
             RefreshDisplayMonitors();
@@ -199,6 +199,18 @@ namespace ComputerMonitorApp
                     (int)(location.Y * (screen.Bounds.Height * 1.0 / ConfigManager.Config.ScreenSize.Height))
                     );
             }
+
+            //如果超出了范围，再调整
+            if (location.X < 0)
+                location.X = 0;
+            else if (location.X + this.Width > screen.Bounds.Width)
+                location.X = screen.Bounds.Width - this.Width;
+
+            if (location.Y < 0)
+                location.Y = 0;
+            else if (location.Y + this.Height > screen.Bounds.Height)
+                location.Y = screen.Bounds.Height - this.Height;
+
             this.Location = location;
         } 
     }

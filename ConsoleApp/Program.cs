@@ -17,12 +17,9 @@ namespace ConsoleApp
         {
             try
             {
-                ComputerMonitorApp.LogManager.InitDefaultLogger();
-                //LogManager.InitDefaultLogger();
-                Log.Information("hello");
                 //if (File.Exists("log.txt")) Console.WriteLine("true");
-                //GetAllPerformanceCounter();
-                //GetAllNetworkInterfaces();
+                GetAllPerformanceCounter();
+                GetAllNetworkInterfaces();
             }
             catch(Exception e)
             {

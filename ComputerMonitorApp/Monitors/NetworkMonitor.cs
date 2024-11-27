@@ -1,4 +1,6 @@
 ﻿using ComputerMonitorApp.Properties;
+using Newtonsoft.Json;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,14 +21,18 @@ namespace ComputerMonitorApp.Monitors
             var ni = GetNetworkInterface() ;
             if (ni == null) return;
             currentInterface = ni.Description;
-            performanceCounterDownload = new PerformanceCounter("Network Interface", "Bytes Received/sec", currentInterface);
-            performanceCounterUpload = new PerformanceCounter("Network Interface", "Bytes Sent/sec", currentInterface);
+           // Log.Debug("interface:"+JsonConvert.SerializeObject(ni));
+            performanceCounterDownload = new PerformanceCounter("Network Interface", "Bytes Received/sec", ToPerformanceInstanceName(currentInterface));
+            performanceCounterUpload = new PerformanceCounter("Network Interface", "Bytes Sent/sec", ToPerformanceInstanceName(currentInterface));
 
             EnableTimer(1000, Timer_Elapsed);
 
             ConfigManager.Config.ConfigChanged += Config_ConfigChanged;
         }
-        
+        private String ToPerformanceInstanceName(String description)
+        {
+            return description.Replace('(','[').Replace(')',']').Replace('#','_');
+        }
         private void Config_ConfigChanged(object sender, ConfigChangedEventArgs eventArgs)
         {
             if (eventArgs.Property != nameof(ConfigManager.Config.NetworkInterface)) return;
@@ -44,14 +50,14 @@ namespace ComputerMonitorApp.Monitors
                 performanceCounterUpload.Dispose();
             }
             currentInterface = ni_set;
-            performanceCounterDownload = new PerformanceCounter("Network Interface", "Bytes Received/sec", currentInterface);
-            performanceCounterUpload = new PerformanceCounter("Network Interface", "Bytes Sent/sec", currentInterface);
+            performanceCounterDownload = new PerformanceCounter("Network Interface", "Bytes Received/sec", ToPerformanceInstanceName(currentInterface));
+            performanceCounterUpload = new PerformanceCounter("Network Interface", "Bytes Sent/sec", ToPerformanceInstanceName(currentInterface));
         }
 
         private NetworkInterface GetNetworkInterface()
         {
             var ni = NetworkInterfaceHelper.GetCurrentNetworkInterface();
-            if (ni.Name != ConfigManager.Config.NetworkInterface)
+            if (ni.Description != ConfigManager.Config.NetworkInterface)
             {
                 ConfigManager.Config.NetworkInterface = ni.Description;
                 ConfigManager.Save();

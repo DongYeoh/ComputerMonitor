@@ -93,10 +93,6 @@
       <Project>{b0397530-545a-471d-bb74-027ae456df1a}</Project>
       <Name>OpenHardwareMonitorLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ComputerMonitorApp\ComputerMonitorApp.csproj">
-      <Project>{4ab91d99-27af-4b12-9650-42e2f2ba7a12}</Project>
-      <Name>ComputerMonitorApp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

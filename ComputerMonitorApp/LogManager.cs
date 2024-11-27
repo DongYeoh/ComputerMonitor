@@ -12,7 +12,9 @@ namespace ComputerMonitorApp
     {
         public static void InitDefaultLogger()
         {
-            var configuration = new LoggerConfiguration();
+            var configuration = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                ;
             foreach (LogEventLevel level in Enum.GetValues(typeof(LogEventLevel)))
             {
                 configuration.WriteTo.Logger(

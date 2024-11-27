@@ -40,7 +40,7 @@ namespace ComputerMonitorApp.Monitors
                 }
                 catch(Exception ex)
                 {
-                    Log.Error($"执行{this.MonitorType.ToString()}的timer报错，将停止运行!"+ex.Message,ex);
+                    Log.Error(ex,$"执行{this.MonitorType.ToString()}的timer报错，将停止运行!"+ex.Message);
                     StopTimer();
                 }
             };
