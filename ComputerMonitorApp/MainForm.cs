@@ -1,7 +1,6 @@
 
 using ComputerMonitorApp.Properties;
 using System.Timers;
-using OpenHardwareMonitor.Hardware;
 using System.Collections.Specialized;
 using System.Linq;
 using ComputerMonitorApp.MonitorControls;
