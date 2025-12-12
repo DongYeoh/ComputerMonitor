@@ -16,6 +16,10 @@ namespace ComputerMonitorApp
     {
 
         private const String configFileName = "config.json";
+        /// <summary>
+        /// 最大透明度设置
+        /// </summary>
+        public static int MaxTransparency = 70;
 
         private static Config config;
         public static Config Config
@@ -77,15 +81,19 @@ namespace ComputerMonitorApp
         /// <summary>
         /// 隐藏的监视器
         /// </summary>
-        public HashSet<EMonitorType> HiddenMonitors { get; set; }
+        public HashSet<EMonitorType> HiddenMonitors{  get;  } 
         /// <summary>
         /// 网络监视器使用的网络接口
         /// </summary>
         public String NetworkInterface { get; set; }
 
-        public delegate void ConfigChangedHandler(object sender, ConfigChangedEventArgs eventArgs);
+        /// <summary>
+        /// 透明度设置，范围0-100 0：不透明 100：完全透明
+        /// </summary>
+        public int Transparency { get; set; }
 
-        public event ConfigChangedHandler ConfigChanged;
+
+        public event EventHandler<ConfigChangedEventArgs> ConfigChanged;
         public void OnConfigChanged(object sender, String property)
         {
             ConfigChanged?.Invoke(sender, new ConfigChangedEventArgs(this,property));

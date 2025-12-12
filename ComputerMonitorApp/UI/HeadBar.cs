@@ -128,6 +128,11 @@ namespace ComputerMonitorApp
 
             this.mainContextMenuStrip.Items.Add(new ToolStripSeparator());
 
+            var transparencyItem = this.mainContextMenuStrip.AddMenuItem("透明度");
+            InitTransparencyMenu(transparencyItem);
+
+            this.mainContextMenuStrip.Items.Add(new ToolStripSeparator());
+
             var closeItem = this.mainContextMenuStrip.AddMenuItem("退出");
             closeItem.Click += (object sender, EventArgs e) =>
             {
@@ -135,6 +140,37 @@ namespace ComputerMonitorApp
             };
 
             this.mainContextMenuStrip.Opening += MainContextMenuStrip_Opening;
+        }
+
+        private void InitTransparencyMenu(ToolStripMenuItem transparencyItem)
+        {
+            for (int i = 0 ;i<=7;i++)
+            {
+                var percent = i * 10;
+                if (percent > ConfigManager.MaxTransparency) break;
+                var itemName = percent == 0 ? "不透明" : $"{percent}%";
+                var item = new ToolStripMenuItem(itemName) { CheckOnClick = true};
+                item.Tag = percent;
+                item.Checked = (percent == ConfigManager.Config.Transparency);
+                item.Click += (object sender, EventArgs e) =>
+                {
+                    var clickedItem = (ToolStripMenuItem)sender;
+
+                    //取消其他选中状态
+                    var checkedItem = transparencyItem.Tag as ToolStripMenuItem;
+                    if(checkedItem != null) checkedItem.Checked = false;
+                    clickedItem.Checked = true;
+                    transparencyItem.Tag = clickedItem;
+
+
+                    var value = (int)clickedItem.Tag;
+                    this.MainForm.Opacity = (100-value) / 100.0;
+                    ConfigManager.Config.Transparency = value;
+                    ConfigManager.Save();
+                };
+                transparencyItem.DropDownItems.Add(item);
+                if (item.Checked) transparencyItem.Tag = item;
+            }
         }
 
         private void MainContextMenuStrip_Opening(object sender, CancelEventArgs e)

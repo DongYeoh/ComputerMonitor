@@ -34,6 +34,8 @@ namespace ComputerMonitorApp
         {
             base.OnLoad(e);
             if (this.IsInDesignMode()) return;
+            //设置透明度
+            InitTransparency();
             //初始化显示位置
             InitLocation();
             //初始化事件监控
@@ -42,6 +44,16 @@ namespace ComputerMonitorApp
             //初始化监视器
             InitMonitorLayouts();
             RefreshDisplayMonitors();
+        }
+        private void InitTransparency()
+        {
+            var transparency = ConfigManager.Config.Transparency; 
+            if (transparency > ConfigManager.MaxTransparency)
+            {
+                transparency = ConfigManager.MaxTransparency;
+            }
+            var opacity = 100 - transparency;
+            this.Opacity = opacity / 100.0;
         }
         private void InitEvents()
         {

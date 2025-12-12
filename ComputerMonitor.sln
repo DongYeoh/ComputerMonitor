@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerMonitorApp", "Compu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{CF51AF1A-1AA4-4E67-869C-D5E71D5824A5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{0C88DD14-F956-CE84-757C-A364CCF449FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp", "WindowsFormsApp\WindowsFormsApp.csproj", "{8D246809-D731-478C-BF00-6E94FA01C8EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{CF51AF1A-1AA4-4E67-869C-D5E71D5824A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF51AF1A-1AA4-4E67-869C-D5E71D5824A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF51AF1A-1AA4-4E67-869C-D5E71D5824A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D246809-D731-478C-BF00-6E94FA01C8EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D246809-D731-478C-BF00-6E94FA01C8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D246809-D731-478C-BF00-6E94FA01C8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D246809-D731-478C-BF00-6E94FA01C8EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D246809-D731-478C-BF00-6E94FA01C8EF} = {0C88DD14-F956-CE84-757C-A364CCF449FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6F1B755-4E2F-4A93-9FBF-89B92A371A4A}

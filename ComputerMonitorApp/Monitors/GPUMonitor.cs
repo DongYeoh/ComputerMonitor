@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace ComputerMonitorApp.Monitors
 {
+
+    /// <summary>
+    /// GPU监控
+    /// </summary>
     public class GPUMonitor : Monitors.Monitor
     {
         private IHardware gpu;
