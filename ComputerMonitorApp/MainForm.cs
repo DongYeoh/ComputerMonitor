@@ -15,13 +15,14 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Runtime;
 using Serilog;
+using ComputerMonitorApp.Modules;
 
 namespace ComputerMonitorApp
 {
 
     public partial class MainForm : Form
     {
-      
+        private TopMostAdapter topMostAdapter;
         public MainForm()
         {
             InitializeComponent();
@@ -29,6 +30,8 @@ namespace ComputerMonitorApp
             this.mainLayout.Controls.Clear();
             this.mainLayout.RowStyles.Clear();
             this.mainLayout.RowCount = 0;
+
+            this.topMostAdapter = new TopMostAdapter(this);
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -43,7 +46,16 @@ namespace ComputerMonitorApp
             InitHeadBar();
             //初始化监视器
             InitMonitorLayouts();
+
             RefreshDisplayMonitors();
+
+            this.topMostAdapter.Init();
+
+        }
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
         }
         private void InitTransparency()
         {
@@ -186,10 +198,25 @@ namespace ComputerMonitorApp
             });
             return monitorControl;
         }
-        protected override void OnClosed(EventArgs e)
+        protected override void OnFormClosed(FormClosedEventArgs e)
         {
-            base.OnClosed(e);
-            MonitorFactory.Close();
+            base.OnFormClosed(e);
+            try
+            {
+                MonitorFactory.Close();
+            }
+            catch(Exception ex)
+            {
+                Log.Error("关闭MonitorFactory时失败：" + ex.Message, ex);
+            }
+            try
+            {
+                topMostAdapter.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("关闭TopMostAdapter时失败：" + ex.Message, ex);
+            }
         }
         private void InitLocation()
         {
