@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using ComputerMonitorApp.Monitors;
+using Serilog;
 
 namespace ComputerMonitorApp
 {
@@ -28,13 +29,13 @@ namespace ComputerMonitorApp
             {
                 if (config == null)
                 {
-                    if (!File.Exists(configFileName))
+                    if (!File.Exists(ConfigFilePath))
                     {
                         config = new Config();
                     }
                     else
                     {
-                        var json = File.ReadAllText(configFileName);
+                        var json = File.ReadAllText(ConfigFilePath);
                         config = JsonConvert.DeserializeObject<Config>(json);
 
                     }
@@ -45,7 +46,13 @@ namespace ComputerMonitorApp
         public static void Save()
         {
             var json = JsonConvert.SerializeObject(Config);
-            File.WriteAllText(configFileName, json);
+            File.WriteAllText(ConfigFilePath, json);
+        }
+        private static String ConfigFilePath {
+            get
+            {
+                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, configFileName);
+            }
         }
     }
 

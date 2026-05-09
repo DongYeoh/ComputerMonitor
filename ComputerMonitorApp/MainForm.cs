@@ -135,6 +135,7 @@ namespace ComputerMonitorApp
         }
         private void RefreshDisplayMonitors()
         {
+            Log.Debug("刷新显示内容");
             var allMonitorTypes = MonitorLayouts.Keys.ToList();
             //获取显示的内容
             var displayMonitors = allMonitorTypes.Except(ConfigManager.Config.HiddenMonitors).ToHashSet();

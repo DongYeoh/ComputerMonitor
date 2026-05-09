@@ -21,7 +21,7 @@ namespace ComputerMonitorApp
                     lc => lc
                     .Filter.ByIncludingOnly(e => e.Level == level)
                     .WriteTo.File(
-                        path: $"logs/{level.ToString()}.txt",
+                        path: $"{AppDomain.CurrentDomain.BaseDirectory}logs/{level.ToString()}.txt",
                         fileSizeLimitBytes: 10 * 1024 * 1024, //10M, 
                         outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}][{SourceContext}-] {Message:lj}{NewLine}{Exception}",
                         rollOnFileSizeLimit: true,
